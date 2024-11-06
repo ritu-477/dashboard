@@ -48,6 +48,7 @@ const Dashboard = () => {
         setOpen(false);
     };
     console.log("Current path:", location.pathname);
+    const Heading = ['The role of LNG', 'Global Hydrogen Course'];
     const Data = ['Requirements', 'Events', 'Career event', 'Activities', 'Masterclasses'];
     return (
         <div className='bg-cream w-full relative'>
@@ -107,12 +108,12 @@ const Dashboard = () => {
                     <div className="bg-yellow w-full fixed top-0 flex justify-end left-1/2 -translate-x-1/2 h-[240px]">
                         <img src={starEllipse} alt="star-ellipse" className='max-w-[200px] w-full lg:opacity-100 opacity-30' />
                     </div>
-                    <div className="lg:p-8 p-3 relative z-20 w-full overflow-hidden">
-                        <h2 className='font-bold text-3xl md:text-4xl mt-7 sm:mt-2'>Welcome back, Zareh 👋🏻</h2>
-                        <p className='mt-5 font-normal text-base font-open'>Below you find your upcoming events, enrolled programmes and progress</p>
-                        <div className="mt-12 xl:flex-row flex-col flex justify-between gap-4 2xl:gap-16">
-                            <div className={`rounded-lg w-full bg-white p-3 lg:p-8 ${location.pathname === '/on%20demand' || location.pathname === '/programmes' ? 'hidden' : 'block'} ${location.pathname === '/events' ? 'w-full' : 'xl:w-[58.9%]'}`}>
-                                <h2 className='font-bold text-2xl mb-4 lg:mb-9'>You have 3 upcoming events</h2>
+                    <div className="lg:px-8 lg:pt-8 pt-7 px-5 pb-7 relative z-20 w-full overflow-hidden">
+                        <h2 className='font-bold text-custom3xl leading-7 sm:text-3xl md:text-4xl sm:leading-9 mt-7 sm:mt-2'>Welcome back, Zareh 👋🏻</h2>
+                        <p className='md:mt-5 mt-3 font-normal text-base font-open'>Below you find your upcoming events, enrolled programmes and progress</p>
+                        <div className="md:mt-12 sm:mt-8 mt-6 xl:flex-row flex-col flex justify-between gap-4 2xl:gap-16">
+                            <div className={`rounded-lg w-full bg-white p-3 sm:p-6 lg:p-8 ${location.pathname === '/on%20demand' || location.pathname === '/programmes' ? 'hidden' : 'block'} ${location.pathname === '/events' ? 'w-full' : 'xl:w-[58.9%]'}`}>
+                                <h2 className='font-bold text-custom2xl leading-6 sm:text-2xl mb-4 lg:mb-9'>You have 3 upcoming events</h2>
                                 {EVENTS_DATA.map((items, idx) => (
                                     <div key={idx} className="flex justify-between items-center mt-4 w-full">
                                         <div className="flex flex-col items-center justify-center bg-black black-circle md:w-20 md:h-20 sm:h-16 w-14 h-14 sm:w-16 rounded-full">
@@ -121,23 +122,27 @@ const Dashboard = () => {
                                         </div>
                                         <div className="flex flex-col max-w-[444px] w-8/12 lg:w-full">
                                             <p className='font-bold text-sm md:text-base'>{items.title}</p>
-                                            <div className="flex items-center mt-2">
-                                                <a href="/"><Icon iconName='timer' /></a>
-                                                <p className='font-normal font-open text-xs ml-1'>{items.time}</p>
-                                                <a href="/"> <Icon className=' ml-2 sm:ml-4' iconName='location' /></a>
-                                                <p className='font-normal font-open text-xs ml-1'>{items.location}</p>
+                                            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-2">
+                                                <div className='flex'>
+                                                    <a href="/"><Icon iconName='timer' /></a>
+                                                    <p className='font-normal font-open text-xs ml-1'>{items.time}</p>
+                                                </div>
+                                                <div className='flex'>
+                                                    <a href="/"><Icon iconName='location' /></a>
+                                                    <p className='font-normal font-open text-xs ml-1'>{items.location}</p>
+                                               </div>
                                             </div>
                                         </div>
                                         <a href="/" className='w-8 h-8 justify-center items-center flex hover:bg-cream duration-300 ease-linear hover:border-black group rounded-full border border-cream'><Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
                                     </div>
                                 ))}
-                                <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-open group hover:scale-105 mt-12 w-fit mb-5 md:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
+                                <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-open group  mt-12 w-fit mb-5 md:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-x-110' iconName='arrowCircle' /></a>
                             </div>
-                            <div className={`rounded-lg w-full xl:w-[41.6%] bg-white p-3 lg:p-8 ${location.pathname === '/programmes' ? '!w-full' : 'block'} ${location.pathname === '/events' ? 'hidden' : 'block'} ${location.pathname === '/on%20demand' ? 'hidden' : 'block'}`}>
-                                <h2 className='font-bold text-2xl mb-4 lg:mb-7'>Your programmes</h2>
+                            <div className={`rounded-lg w-full xl:w-[41.6%] bg-white p-3 sm:p-6 lg:p-8 ${location.pathname === '/programmes' ? '!w-full' : 'block'} ${location.pathname === '/events' ? 'hidden' : 'block'} ${location.pathname === '/on%20demand' ? 'hidden' : 'block'}`}>
+                                <h2 className='font-bold text-custom2xl leading-6 sm:text-2xl mb-4 lg:mb-9'>Your programmes</h2>
                                 {[...Array(2)].map((_, index) => (
-                                    <div key={index} className="border border-cream rounded-lg py-8 px-6 mt-4 relative overflow-hidden">
-                                        <h2 className='font-bold text-lg mb-4'>The role of LNG</h2>
+                                    <div key={index} className="border border-cream rounded-lg py-6 px-4 sm:py-8 sm:px-6 mt-4 relative overflow-hidden">
+                                            <h3 className='font-bold text-base sm:text-lg sm:leading-[22px] mb-4'>{Heading[index]}</h3>
                                         {[...Array(5)]
                                             .slice(0, index === 0 ? 5 : 2)
                                             .map((_, idx) => (
@@ -154,18 +159,18 @@ const Dashboard = () => {
                                                     </div>
                                                 </div>
                                             ))}
-                                        <span className='flex bg-yellow w-[120px] h-[120px] absolute rounded-full -top-11 -right-11'></span>
-                                        <Icon className='absolute top-4 right-4' iconName={index === 0 ? "boatIcon" : "hydrogenIcon"} />
+                                        <span className='flex bg-yellow w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] absolute rounded-full -top-11 -right-11'></span>
+                                        <Icon className='absolute top-2 sm:top-4 sm:right-4 right-2 sm:w-14 w-10' iconName={index === 0 ? "boatIcon" : "hydrogenIcon"} />
                                     </div>
                                 ))}
-                                <a href="/" className='flex items-center gap-2 font-open font-semibold text-sm duration-300 ease-linear group hover:scale-105 mt-6 w-fit mb-1'>More programmes <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='rightArrow' /></a>
+                                <a href="/" className='flex items-center gap-2 font-open font-semibold text-sm duration-300 ease-linear group mt-6 w-fit mb-1'>More programmes <Icon className='duration-300 ease-linear group-hover:scale-x-110' iconName='rightArrow' /></a>
                             </div>
                         </div>
                     </div>
                     {/* slider */}
-                    <div className={`px-8 relative overflow-hidden w-full ${location.pathname === '/events' || location.pathname === '/programmes' ? 'hidden' : 'block'}`}>
-                        <div className="flex w-full justify-between mb-6">
-                            <h2 className='font-bold text-2xl'>Recommended for you</h2>
+                    <div className={`lg:px-8 px-5 relative overflow-hidden w-full ${location.pathname === '/events' || location.pathname === '/programmes' ? 'hidden' : 'block'}`}>
+                        <div className="flex w-full justify-between mb-4 md:mb-6">
+                            <h2 className='font-bold sm:text-2xl text-custom2xl leading-6'>Recommended for you</h2>
                             <div className="flex items-center justify-center gap-2 relative">
                                 <Icon className="hover:scale-95 swiper-button-next !top-auto !relative !right-auto !w-8 !h-8 cursor-pointer hover:bg-yellow duration-300 ease-linear hover:border-off-yellow rounded-full border border-[#BBBAB6] flex items-center justify-center" iconName='rightArrow' />
                                 <Icon className="hover:scale-95 swiper-button-prev !top-auto !relative !left-auto rotate-180 cursor-pointer !w-8 !h-8 hover:bg-yellow duration-300 ease-linear hover:border-off-yellow rounded-full border items-center justify-center border-[#BBBAB6]" iconName='leftArrow' />

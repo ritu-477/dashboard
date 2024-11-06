@@ -22,7 +22,11 @@ module.exports = {
       },
       fontFamily: {
         'open': "open sans , sans serif",
-      }
+      },
+      fontSize: {
+        'custom3xl': "26px",
+        'custom2xl': "21px",
+      },
     },
   },
   plugins: [],
