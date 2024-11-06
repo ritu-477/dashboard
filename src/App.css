@@ -23,5 +23,11 @@
     src: url("./assets/font/TheNorthern-BlockLtdTypoldThin.otf");
     font-weight: 300;
 }
-
+@media(min-width:1280px) and (max-width:1370px){
+    .black-circle{
+        width: 96px;
+        margin-right: 12px;
+        height: 74px;
+    }
+}
  

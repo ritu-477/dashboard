@@ -122,8 +122,8 @@ const Dashboard = () => {
                                 <h2 className='font-bold text-2xl mb-4 lg:mb-9'>You have 3 upcoming events</h2>
                                 {EVENTS_DATA.map((items, idx) => (
                                     <div key={idx} className="flex justify-between items-center mt-4 w-full">
-                                        <div className="flex flex-col items-center justify-center bg-black md:w-20 md:h-20 sm:h-16 w-14 h-14 sm:w-16 rounded-full">
-                                            <p className='font-black text-lg sm:text-xl lg:text-3xl text-white lg:leading-8'>{items.date}</p>
+                                        <div className="flex flex-col items-center justify-center bg-black black-circle md:w-20 md:h-20 sm:h-16 w-14 h-14 sm:w-16 rounded-full">
+                                            <p className='font-black text-lg sm:text-xl lg:text-3xl text-white !lg:leading-8'>{items.date}</p>
                                             <p className='font-light text-xs sm:text-sm font-opensans md:text-lg text-white md:leading-5 capitalize'>{items.months}</p>
                                         </div>
                                         <div className="flex flex-col max-w-[444px] w-8/12 lg:w-full">
