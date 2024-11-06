@@ -111,7 +111,7 @@ const Dashboard = () => {
                         <h2 className='font-bold text-3xl md:text-4xl mt-7 sm:mt-2'>Welcome back, Zareh 👋🏻</h2>
                         <p className='mt-5 font-normal text-base font-open'>Below you find your upcoming events, enrolled programmes and progress</p>
                         <div className="mt-12 xl:flex-row flex-col flex justify-between gap-4 2xl:gap-16">
-                            <div className={`rounded-lg w-full bg-white p-3 lg:p-8 ${location.pathname === '/on%20demand' || location.pathname === '/programmes' ? 'hidden' : 'block'} ${location.pathname === '/events' ? 'w-full' : 'xl:w-[58.7%]'}`}>
+                            <div className={`rounded-lg w-full bg-white p-3 lg:p-8 ${location.pathname === '/on%20demand' || location.pathname === '/programmes' ? 'hidden' : 'block'} ${location.pathname === '/events' ? 'w-full' : 'xl:w-[58.9%]'}`}>
                                 <h2 className='font-bold text-2xl mb-4 lg:mb-9'>You have 3 upcoming events</h2>
                                 {EVENTS_DATA.map((items, idx) => (
                                     <div key={idx} className="flex justify-between items-center mt-4 w-full">
@@ -133,7 +133,7 @@ const Dashboard = () => {
                                 ))}
                                 <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-open group hover:scale-105 mt-12 w-fit mb-5 md:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
                             </div>
-                            <div className={`rounded-lg w-full xl:w-[41.3%] bg-white p-3 lg:p-8 ${location.pathname === '/programmes' ? '!w-full' : 'block'} ${location.pathname === '/events' ? 'hidden' : 'block'} ${location.pathname === '/on%20demand' ? 'hidden' : 'block'}`}>
+                            <div className={`rounded-lg w-full xl:w-[41.6%] bg-white p-3 lg:p-8 ${location.pathname === '/programmes' ? '!w-full' : 'block'} ${location.pathname === '/events' ? 'hidden' : 'block'} ${location.pathname === '/on%20demand' ? 'hidden' : 'block'}`}>
                                 <h2 className='font-bold text-2xl mb-4 lg:mb-7'>Your programmes</h2>
                                 {[...Array(2)].map((_, index) => (
                                     <div key={index} className="border border-cream rounded-lg py-8 px-6 mt-4 relative overflow-hidden">
