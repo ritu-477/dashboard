@@ -16,7 +16,6 @@ const Dashboard = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState(0);
-    const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1920);
     const [open, setOpen] = useState(false);
     const sidebarRef = useRef(null);
 
@@ -24,12 +23,6 @@ const Dashboard = () => {
         const tabIndex = TABS_DATA.findIndex(tab => tab.title.toLowerCase() === tabName?.toLowerCase());
         setActiveTab(tabIndex !== -1 ? tabIndex : 0);
     }, [tabName]);
-
-    useEffect(() => {
-        const handleResize = () => setIsLargeScreen(window.innerWidth >= 1920);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     useEffect(() => {
         document.body.classList.toggle("overflow-hidden", open && window.innerWidth < 640);
@@ -59,8 +52,8 @@ const Dashboard = () => {
     return (
         <div className='bg-cream w-full relative'>
             <div
-                className={`w-full h-full fixed bg-white top-0 right-0 bg-layer transition-opacity duration-300 
-    ${open ? 'z-30 opacity-50' : 'z-0 opacity-0'}`}
+                className={`w-full h-full fixed bg-black top-0 right-0 bg-layer transition-opacity duration-300 
+    ${open ? 'z-30 opacity-60' : 'z-0 opacity-0'}`}
             />
             <div className='flex w-full'>
                 {/* dashboard */}
@@ -116,40 +109,40 @@ const Dashboard = () => {
                     </div>
                     <div className="lg:p-8 p-3 relative z-20 w-full overflow-hidden">
                         <h2 className='font-bold text-3xl md:text-4xl mt-7 sm:mt-2'>Welcome back, Zareh 👋🏻</h2>
-                        <p className='mt-5 font-normal text-base font-opensans'>Below you find your upcoming events, enrolled programmes and progress</p>
-                        <div className="mt-12 xl:flex-row flex-col flex justify-between gap-4">
+                        <p className='mt-5 font-normal text-base font-open'>Below you find your upcoming events, enrolled programmes and progress</p>
+                        <div className="mt-12 xl:flex-row flex-col flex justify-between gap-4 2xl:gap-16">
                             <div className={`rounded-lg w-full bg-white p-3 lg:p-8 ${location.pathname === '/on%20demand' || location.pathname === '/programmes' ? 'hidden' : 'block'} ${location.pathname === '/events' ? 'w-full' : 'xl:w-[58.7%]'}`}>
                                 <h2 className='font-bold text-2xl mb-4 lg:mb-9'>You have 3 upcoming events</h2>
                                 {EVENTS_DATA.map((items, idx) => (
                                     <div key={idx} className="flex justify-between items-center mt-4 w-full">
                                         <div className="flex flex-col items-center justify-center bg-black black-circle md:w-20 md:h-20 sm:h-16 w-14 h-14 sm:w-16 rounded-full">
                                             <p className='font-black text-lg sm:text-xl lg:text-3xl text-white !lg:leading-8'>{items.date}</p>
-                                            <p className='font-light text-xs sm:text-sm font-opensans md:text-lg text-white md:leading-5 capitalize'>{items.months}</p>
+                                            <p className='font-light text-xs sm:text-sm font-open md:text-lg text-white md:leading-5 capitalize'>{items.months}</p>
                                         </div>
                                         <div className="flex flex-col max-w-[444px] w-8/12 lg:w-full">
                                             <p className='font-bold text-sm md:text-base'>{items.title}</p>
                                             <div className="flex items-center mt-2">
-                                                <Icon iconName='timer' />
-                                                <p className='font-normal text-xs ml-1'>{items.time}</p>
-                                                <Icon className=' ml-2 sm:ml-4' iconName='location' />
-                                                <p className='font-normal text-xs ml-1'>{items.location}</p>
+                                                <a href="/"><Icon iconName='timer' /></a>
+                                                <p className='font-normal font-open text-xs ml-1'>{items.time}</p>
+                                                <a href="/"> <Icon className=' ml-2 sm:ml-4' iconName='location' /></a>
+                                                <p className='font-normal font-open text-xs ml-1'>{items.location}</p>
                                             </div>
                                         </div>
-                                        <a href="/" className='w-8 h-8 justify-center items-center flex hover:bg-dark-gray duration-300 ease-linear hover:border-black group rounded-full border border-cream'><Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
+                                        <a href="/" className='w-8 h-8 justify-center items-center flex hover:bg-cream duration-300 ease-linear hover:border-black group rounded-full border border-cream'><Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
                                     </div>
                                 ))}
-                                <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-opensans group hover:scale-105 mt-12 w-fit mb-5 md:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
+                                <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-open group hover:scale-105 mt-12 w-fit mb-5 md:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
                             </div>
                             <div className={`rounded-lg w-full xl:w-[41.3%] bg-white p-3 lg:p-8 ${location.pathname === '/programmes' ? '!w-full' : 'block'} ${location.pathname === '/events' ? 'hidden' : 'block'} ${location.pathname === '/on%20demand' ? 'hidden' : 'block'}`}>
-                                <h2 className='font-bold text-2xl mb-4 lg:mb-9'>Your programmes</h2>
+                                <h2 className='font-bold text-2xl mb-4 lg:mb-7'>Your programmes</h2>
                                 {[...Array(2)].map((_, index) => (
-                                    <div key={index} className="border border-dark-gray rounded-lg py-8 px-6 mt-4 relative overflow-hidden">
+                                    <div key={index} className="border border-cream rounded-lg py-8 px-6 mt-4 relative overflow-hidden">
                                         <h2 className='font-bold text-lg mb-4'>The role of LNG</h2>
                                         {[...Array(5)]
                                             .slice(0, index === 0 ? 5 : 2)
                                             .map((_, idx) => (
                                                 <div key={idx} className="mt-3 max-w-[256px] w-full">
-                                                    <p className="font-normal font-opensans text-xs">{Data[idx]}</p>
+                                                    <p className="font-normal font-open text-xs">{Data[idx]}</p>
                                                     <div className="flex gap-2 mt-0.5">
                                                         {idx === 2 ? null : <span className="w-1/2 flex bg-black rounded-3xl h-2"></span>}
                                                         {Array.from({ length: idx === 1 || idx === 3 ? 4 : 1 }).map((_, spanIdx) => (
@@ -165,12 +158,12 @@ const Dashboard = () => {
                                         <Icon className='absolute top-4 right-4' iconName={index === 0 ? "boatIcon" : "hydrogenIcon"} />
                                     </div>
                                 ))}
-                                <a href="/" className='flex items-center gap-2 font-opensans font-semibold text-sm duration-300 ease-linear group hover:scale-105 mt-12 w-fit mb-1'>More programmes <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='rightArrow' /></a>
+                                <a href="/" className='flex items-center gap-2 font-open font-semibold text-sm duration-300 ease-linear group hover:scale-105 mt-6 w-fit mb-1'>More programmes <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='rightArrow' /></a>
                             </div>
                         </div>
                     </div>
                     {/* slider */}
-                    <div className={`mt-7 px-8 relative overflow-hidden w-full ${location.pathname === '/events' || location.pathname === '/programmes' ? 'hidden' : 'block'}`}>
+                    <div className={`px-8 relative overflow-hidden w-full ${location.pathname === '/events' || location.pathname === '/programmes' ? 'hidden' : 'block'}`}>
                         <div className="flex w-full justify-between mb-6">
                             <h2 className='font-bold text-2xl'>Recommended for you</h2>
                             <div className="flex items-center justify-center gap-2 relative">
@@ -212,12 +205,12 @@ const Dashboard = () => {
                                             <div className="bg-white w-full -mt-0.5 p-6">
                                                 <h2 className='mt-0.5 text-base leading-4 font-bold min-h-8'>{items.title}</h2>
                                                 <div className="flex items-center gap-2.5 mt-4">
-                                                    <Icon iconName='timer' />
-                                                    <p className='font-normal font-opensans text-xs'>Online</p>
+                                                    <a href=""><Icon iconName='location' /></a>
+                                                    <p className='font-normal font-open text-xs'>Online</p>
                                                 </div>
                                                 <div className="flex items-center gap-2.5 mb-4 mt-2">
-                                                    <Icon iconName='location' />
-                                                    <p className='font-normal font-opensans text-xs'>80000</p>
+                                                    <a href="/"><Icon iconName='timer' /></a>
+                                                    <p className='font-normal font-open text-xs'>08:00 - 10:00</p>
                                                 </div>
                                             </div>
                                         </div>

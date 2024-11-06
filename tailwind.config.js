@@ -21,7 +21,7 @@ module.exports = {
         'yellow': "#ffed00",
       },
       fontFamily: {
-        'opensans': "open sans , sans serif",
+        'open': "open sans , sans serif",
       }
     },
   },
