@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import sideBarLogo from '../assets/images/webp/sidebar-logo.webp';
 import Icon from '../common/Icon';
@@ -19,6 +18,7 @@ const Dashboard = () => {
     const [activeTab, setActiveTab] = useState(0);
     const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1920);
     const [open, setOpen] = useState(false);
+    const sidebarRef = useRef(null);
 
     useEffect(() => {
         const tabIndex = TABS_DATA.findIndex(tab => tab.title.toLowerCase() === tabName?.toLowerCase());
@@ -35,20 +35,37 @@ const Dashboard = () => {
         document.body.classList.toggle("overflow-hidden", open && window.innerWidth < 640);
     }, [open]);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+                setOpen(false);
+            }
+        };
+        if (open) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [open]);
+
     const handleClick = (idx, title) => {
         setActiveTab(idx);
-        navigate(`/${title.toLowerCase()}`); 
+        navigate(`/${title.toLowerCase()}`);
         setOpen(false);
     };
     console.log("Current path:", location.pathname);
     const Data = ['Requirements', 'Events', 'Career event', 'Activities', 'Masterclasses'];
     return (
-        <div className='bg-cream w-full'>
+        <div className='bg-cream w-full relative'>
+            <div
+                className={`w-full h-full fixed bg-white top-0 right-0 bg-layer transition-opacity duration-300 
+    ${open ? 'z-30 opacity-50' : 'z-0 opacity-0'}`}
+            />
             <div className='flex w-full'>
                 {/* dashboard */}
-                <div className={`md:px-[120px] absolute sm:relative z-[200] duration-300 ease-linear sm:!left-0 sm:px-24 min-h-screen ${open ? "left-0" : "-left-full"}`}>
-                    <div className="top-0 sm:max-w-[192px] md:max-w-[240px] max-w-[240px] w-full flex flex-col justify-between sm:fixed min-h-screen bg-black sm:p-2 p-5 md:p-5"
-                        style={{ left: isLargeScreen ? 'calc((100vw - 1920px) / 2)' : '0%' }}>
+                <div ref={sidebarRef} className={`md:px-[120px] fixed sm:relative z-[200] duration-300 ease-linear sm:!left-0 sm:px-24 min-h-screen ${open ? "left-0" : "-left-full"}`}>
+                    <div className="top-0 sm:max-w-[192px] left-0 md:max-w-[240px] max-w-[240px] w-full flex flex-col justify-between sm:fixed min-h-screen bg-black sm:p-2 p-5 md:p-5">
                         <div className="flex flex-col">
                             <a href="/" className="w-fit mx-auto mt-6"><img src={sideBarLogo} alt="logo" /></a>
                             <div className="flex flex-col mt-16 gap-8">
@@ -80,8 +97,8 @@ const Dashboard = () => {
                     >
                         {open ? (
                             <>
-                                <span className="h-1 absolute w-6 bg-white transform rotate-45 transition duration-300"></span>
-                                <span className="h-1 absolute w-6 bg-white transform -rotate-45 transition duration-300"></span>
+                                <span className="h-1 absolute w-6 bg-yellow transform rotate-45 transition duration-300"></span>
+                                <span className="h-1 absolute w-6 bg-yellow transform -rotate-45 transition duration-300"></span>
                             </>
                         ) : (
                             <div className="flex flex-col gap-1">
@@ -94,19 +111,19 @@ const Dashboard = () => {
                 </div>
                 {/* tabs */}
                 <div className='max-md:ml-auto w-full sm:w-[83.3%] overflow-hidden'>
-                    <div className="bg-yellow w-full fixed max-w-[1920px] top-0 flex justify-end left-1/2 -translate-x-1/2 h-[240px]">
+                    <div className="bg-yellow w-full fixed top-0 flex justify-end left-1/2 -translate-x-1/2 h-[240px]">
                         <img src={starEllipse} alt="star-ellipse" className='max-w-[200px] w-full lg:opacity-100 opacity-30' />
                     </div>
                     <div className="lg:p-8 p-3 relative z-20 w-full overflow-hidden">
                         <h2 className='font-bold text-3xl md:text-4xl mt-7 sm:mt-2'>Welcome back, Zareh 👋🏻</h2>
                         <p className='mt-5 font-normal text-base font-opensans'>Below you find your upcoming events, enrolled programmes and progress</p>
                         <div className="mt-12 xl:flex-row flex-col flex justify-between gap-4">
-                            <div className={`rounded-lg w-full bg-white p-3 lg:p-8 ${location.pathname === '/events' ? 'w-full' : 'xl:w-[58.7%]'}`}>
+                            <div className={`rounded-lg w-full bg-white p-3 lg:p-8 ${location.pathname === '/on%20demand' || location.pathname === '/programmes' ? 'hidden' : 'block'} ${location.pathname === '/events' ? 'w-full' : 'xl:w-[58.7%]'}`}>
                                 <h2 className='font-bold text-2xl mb-4 lg:mb-9'>You have 3 upcoming events</h2>
                                 {EVENTS_DATA.map((items, idx) => (
                                     <div key={idx} className="flex justify-between items-center mt-4 w-full">
                                         <div className="flex flex-col items-center justify-center bg-black md:w-20 md:h-20 sm:h-16 w-14 h-14 sm:w-16 rounded-full">
-                                            <p className='font-black text-lg sm:text-xl md:text-3xl text-white md:leading-7'>{items.date}</p>
+                                            <p className='font-black text-lg sm:text-xl lg:text-3xl text-white lg:leading-8'>{items.date}</p>
                                             <p className='font-light text-xs sm:text-sm font-opensans md:text-lg text-white md:leading-5 capitalize'>{items.months}</p>
                                         </div>
                                         <div className="flex flex-col max-w-[444px] w-8/12 lg:w-full">
@@ -123,7 +140,7 @@ const Dashboard = () => {
                                 ))}
                                 <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-opensans group hover:scale-105 mt-12 w-fit mb-5 md:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
                             </div>
-                            <div className={`rounded-lg w-full xl:w-[41.3%] bg-white p-3 lg:p-8 ${location.pathname === '/events' ? 'hidden' : 'block'}`}>
+                            <div className={`rounded-lg w-full xl:w-[41.3%] bg-white p-3 lg:p-8 ${location.pathname === '/programmes' ? '!w-full' : 'block'} ${location.pathname === '/events' ? 'hidden' : 'block'} ${location.pathname === '/on%20demand' ? 'hidden' : 'block'}`}>
                                 <h2 className='font-bold text-2xl mb-4 lg:mb-9'>Your programmes</h2>
                                 {[...Array(2)].map((_, index) => (
                                     <div key={index} className="border border-dark-gray rounded-lg py-8 px-6 mt-4 relative overflow-hidden">
@@ -153,7 +170,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     {/* slider */}
-                    <div className={`mt-7 px-8 relative overflow-hidden w-full ${location.pathname === '/events' ? 'hidden' : 'block'}`}>
+                    <div className={`mt-7 px-8 relative overflow-hidden w-full ${location.pathname === '/events' || location.pathname === '/programmes' ? 'hidden' : 'block'}`}>
                         <div className="flex w-full justify-between mb-6">
                             <h2 className='font-bold text-2xl'>Recommended for you</h2>
                             <div className="flex items-center justify-center gap-2 relative">
