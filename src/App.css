@@ -3,27 +3,32 @@
  body{
     font-family:"typold",sans-serif;
  }
+
 @font-face {
     font-family: 'typold';
     src: url("./assets/font/Typold-Book500.otf");
     font-weight: 400;
 }
+
 @font-face {
     font-family: 'typold';
     src: url("./assets/font/TheNorthern-BlockLtdTypoldBold.otf");
     font-weight: 700;
 }
+
 @font-face {
     font-family: 'typold';
     src: url("./assets/font/TheNorthern-BlockLtdTypoldExtraBold.otf");
     font-weight: 900;
 }
+
 @font-face {
     font-family: 'typold';
     src: url("./assets/font/TheNorthern-BlockLtdTypoldThin.otf");
     font-weight: 300;
 }
-@media(min-width:1280px) and (max-width:1370px){
+
+@media(min-width:1280px) and (max-width:1369.99px){
     .black-circle{
         width: 96px;
         margin-right: 12px;

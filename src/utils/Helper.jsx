@@ -15,22 +15,21 @@ export const TABS_DATA = [
     {
         title: "Dashboard",
         icon: "square",
-        tabsContent: SWIPER_DATA,
     },
+    
     {
         title: "Events",
         icon: "lock",
-        tabsContent: SWIPER_DATA,
     },
+
     {
         title: "On demand",
         icon: "video",
-        tabsContent: SWIPER_DATA,
     },
+
     {
         title: "Programmes",
         icon: "saved",
-        tabsContent: SWIPER_DATA,
     },
 ];
 export const EVENTS_DATA = [
