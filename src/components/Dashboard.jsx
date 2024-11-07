@@ -136,7 +136,7 @@ const Dashboard = () => {
                                         <a href="/" className='w-8 h-8 justify-center items-center flex hover:bg-cream duration-300 ease-linear hover:border-black group rounded-full border border-cream'><Icon className='duration-300 ease-linear group-hover:scale-90' iconName='arrowCircle' /></a>
                                     </div>
                                 ))}
-                                <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-open group  mt-12 w-fit mb-5 md:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-x-110' iconName='arrowCircle' /></a>
+                                <a href="/" className='flex items-center gap-2 font-semibold text-sm duration-300 ease-linear font-open group mt-6  md:mt-12 w-fit mb-6 md:mb-10 lg:mb-14'>More events <Icon className='duration-300 ease-linear group-hover:scale-x-110' iconName='arrowCircle' /></a>
                             </div>
                             <div className={`rounded-lg w-full xl:w-[41.6%] bg-white p-3 sm:p-6 lg:p-8 ${location.pathname === '/programmes' ? '!w-full' : 'block'} ${location.pathname === '/events' ? 'hidden' : 'block'} ${location.pathname === '/on%20demand' ? 'hidden' : 'block'}`}>
                                 <h2 className='font-bold text-custom2xl leading-6 sm:text-2xl mb-4 lg:mb-9'>Your programmes</h2>
@@ -163,7 +163,7 @@ const Dashboard = () => {
                                         <Icon className='absolute top-2 sm:top-4 sm:right-4 right-2 sm:w-14 w-10' iconName={index === 0 ? "boatIcon" : "hydrogenIcon"} />
                                     </div>
                                 ))}
-                                <a href="/" className='flex items-center gap-2 font-open font-semibold text-sm duration-300 ease-linear group mt-6 w-fit mb-1'>More programmes <Icon className='duration-300 ease-linear group-hover:scale-x-110' iconName='rightArrow' /></a>
+                                <a href="/" className='flex items-center gap-2 font-open font-semibold text-sm duration-300 ease-linear group mt-6 w-fit mb-6 sm:mb-1'>More programmes <Icon className='duration-300 ease-linear group-hover:scale-x-110' iconName='rightArrow' /></a>
                             </div>
                         </div>
                     </div>
